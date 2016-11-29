@@ -1,19 +1,19 @@
 <?php
 
-$e = new Event();
+$e = new \EventPHP\Event();
 $e->on('pedidoFinalizado', function($codigo, $valor) {
     $r = $valor+=1;
     echo $r . "\n";
 });
 
-$e = new Event();
+$e = new \EventPHP\Event();
 $e->on('pedidoFinalizado', function($codigo, $valor) {
     $r = $valor+=2;
     echo $r . "\n";
 });
 
 
-$e = new Event();
+$e = new \EventPHP\Event();
 $e->on('pedidoFinalizado', function($codigo, $valor) use ($teste) {
     $r = $valor+=3;
     echo $r . "\n";
