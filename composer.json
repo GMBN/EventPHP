@@ -1,0 +1,23 @@
+{
+    "name": "gmbn/eventphp",
+    "type": "library",
+    "description": "Manipulate events with php",
+    "keywords": ["event","nodejs","jQuery","php","eventos"],
+    "homepage": "https://github.com/GMBN/EventPHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gian Nunes",
+            "email": "gianboschette@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "EventPHP": "src"
+        }
+    }
+}
