@@ -2,7 +2,7 @@
 Usage
 
 ```php
-$e = new \App\Event();//start global event 
+$e = new \EventPHP\Event();//start global event 
 
 $e->on('pedidoFinalizado', function($codigo, $valor) use ($e){
     $r = $valor+=10;
