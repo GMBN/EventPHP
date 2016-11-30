@@ -7,7 +7,7 @@ class Event {
         $GLOBALS['e_event'][$event][] = $callback;
     }
 
-    function trigger($event, $param) {
+    function trigger($event, $param = false) {
         foreach ($GLOBALS['e_event'][$event] as $callback) {
             if ($callback) {
                 if (isset($param[0])) {
