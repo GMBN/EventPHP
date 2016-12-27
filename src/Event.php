@@ -24,14 +24,22 @@ class Event {
             ksort($listeners); //Ordena o array pelas chaves
 
             foreach ($listeners as $priority => $callback) {
-                if ($callback) {
+                //verifica se é uma classe
+                if (is_string($callback) && class_exists($callback)) {
+                    if (!$param) {
+                        $param = [];
+                    }
+                    $class = new $callback();
+                    call_user_func_array([$class, 'on'], $param);
+                } else if ($callback) {
                     if (isset($param[0])) {
                         call_user_func_array($callback, $param);
                     } else {
                         $callback();
                     }
-                    $this->executed[][$priority][$event] = $this->getFile($callback);
                 }
+
+                $this->executed[][$priority][$event] = $this->getFile($callback);
             }
         }
     }
@@ -51,13 +59,17 @@ class Event {
         }
         return $this->file;
     }
-    
-    function debug(){
+
+    function debug() {
         return $this->executed;
     }
 
     private function getFile($callback) {
-        $ref = new \ReflectionFunction($callback);
+        if (is_string($callback) && class_exists($callback)) {
+            $ref = new \ReflectionClass($callback);
+        } else {
+            $ref = new \ReflectionFunction($callback);
+        }
         $file = $ref->getFileName();
         return $file;
     }
